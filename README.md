@@ -1,24 +1,66 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
+| Column              | Type   | Options     |
+| ------------------- | ------ | ----------- |
+| nickname            | string | null: false |
+| email               | string | null: false |
+| encrypted_password  | string | null: false |
+| first_name          | string | null: false |
+| last_name           | string | null: false |
+| first_name_zen_kana | string | null: false |
+| last_name_zen_kana  | string | null: false |
+| bitth_year          | date   | null: false |
 
-Things you may want to cover:
+### Association
+has_many :items
+has_many :orders
+has_many :comments
 
-* Ruby version
 
-* System dependencies
+## itemsテーブル
+| Column              | Type             | Options           |
+| ------------------- | ---------------- | ----------------- |
+| image               | ActiveStorageで実装 |                 |
+| product             | string           | null: false       |
+| product_description | text             | null: false       |
+| category            | string           | null: false       |  <!-- integer？ -->
+| status              | string           | null: false       |
+| postage             | string           | null: false       |
+| send_region         | string           | null: false       |  <!-- integer？ -->
+| shipping_date       | string           | null: false       |  <!-- integer？ -->
+| price               | string           | null: false       |
+| saler_id            | string           | foreign_key: true |
+| buyer_id            | string           | foreign_key: true |
 
-* Configuration
+### Association
+belongs_to :user
+has_one :order
 
-* Database creation
+## ordersテーブル
+| Column              | Type       | Options           |
+| ------------------- | ---------- | ----------------- |
+| price               | integer    | null: false       |  
+| delivery_postalcode | string     | null: false       |  <!-- 郵便番号 -->
+| delivery_prefecture | string     | null: false       |  <!-- 都道府県 -->
+| delivery_city       | string     | null: false       |  <!-- 市区町村 -->
+| delivery_address    | string     | null: false       |  <!-- 番地 -->
+| delivery_mansion    | string     |                   |  <!-- 建物名（任意） -->
+| phone               | string     | null: false       |
+| user_id             | references | foreign_key: true |
+| item_id             | references | foreign_key: true |
 
-* Database initialization
+### Association
+belongs_to :user
+belongs_to :item
 
-* How to run the test suite
+## commentsテーブル
+| Column  | Type       | Options           |
+| ------- | ---------- | ----------------- |
+| item_id | references | foreign_key: true |
+| user_id | references | foreign_key: true |
+| text    | text       | null: false       |
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Association
+belongs_to :user
+belongs_to :item
