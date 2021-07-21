@@ -1,24 +1,73 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
+| Column              | Type   | Options                   |
+| ------------------- | ------ | ------------------------- |
+| nickname            | string | null: false               |
+| email               | string | null: false, unique: true |  <!-- 一意制約 -->
+| encrypted_password  | string | null: false               |
+| first_name          | string | null: false               |
+| last_name           | string | null: false               |
+| first_name_zen_kana | string | null: false               |
+| last_name_zen_kana  | string | null: false               |
+| birth_day           | date   | null: false               |  <!-- 生年月日（ひとまとめ） -->
 
-Things you may want to cover:
+### Association
 
-* Ruby version
+has_many :items
+has_many :orders
+has_many :comments
 
-* System dependencies
+## itemsテーブル
+| Column              | Type       | Options           | 
+| ------------------- | ---------- | ----------------- | 
+| product             | string     | null: false       |
+| product_description | text       | null: false       |
+| category_id         | integer    | null: false       | <!-- カテゴリー --> 
+| status_id           | integer    | null: false       | <!-- 商品の状態 --> 
+| postage_id          | integer    | null: false       | <!-- 配送料の負担 --> 
+| prefecture_id       | integer    | null: false       | <!-- 発送元の地域 --> 
+| shipping_date_id    | integer    | null: false       | <!-- 発想までの日数 -->
+| price               | integer    | null: false       | 
+| user                | references | foreign_key: true |
 
-* Configuration
+### Association
+has_one :order
+belongs_to :user
+has_many :comments
 
-* Database creation
+## ordersテーブル                                          <!-- 購入管理テーブル -->
 
-* Database initialization
+| Column | Type       | Options           |
+| ------ | ---------- | ----------------- |
+| user   | references | foreign_key: true |
+| item   | references | foreign_key: true |
 
-* How to run the test suite
+### Association
+belongs_to :item
+belongs_to :user
+has_one :address
 
-* Services (job queues, cache servers, search engines, etc.)
+## addressテーブル                                          <!-- 住所テーブル -->
+| Column              | Type    | Options                        |
+| ------------------- | ------- | ------------------------------ |
+| delivery_postalcode | string  | null: false                    | <!-- 郵便番号 --> 
+| prefecture_id       | integer | null: false                    | <!-- 都道府県 --> 
+| delivery_city       | string  | null: false                    | <!-- 市区町村 -->
+| delivery_address    | string  | null: false                    | <!-- 番地 --> 
+| delivery_mansion    | string  |                                | <!-- 建物名（任意） --> 
+| phone               | string  | null: false                    |
+| order_id            | integer | null: false, foreign_key: true |
 
-* Deployment instructions
+### Association
+belongs_to :order
 
-* ...
+## commentsテーブル
+| Column  | Type       | Options           |
+| ------- | ---------- | ----------------- |
+| item_id | references | foreign_key: true |
+| user_id | references | foreign_key: true |
+| text    | text       | null: false       |
+
+### Association
+belongs_to :item
