@@ -15,19 +15,21 @@
 ### Association
 
 has_many :items
+has_many :orders
 has_many :comments
 
 ## itemsテーブル
-| Column              | Type             | Options           |
-| ------------------- | ---------------- | ----------------- |
-| product             | string           | null: false       |
-| product_description | text             | null: false       |
-| category_id         | integer          | null: false       |  <!-- カテゴリー -->
-| status_id           | integer          | null: false       |  <!-- 商品の状態 -->
-| postage_id          | integer          | null: false       |  <!-- 配送料の負担 -->
-| prefecture_id       | integer          | null: false       |  <!-- 発送元の地域 -->
-| shipping_date_id    | integer          | null: false       |  <!-- 発想までの日数 -->
-| price               | integer          | null: false       |
+| Column              | Type       | Options           | 
+| ------------------- | ---------- | ----------------- | 
+| product             | string     | null: false       |
+| product_description | text       | null: false       |
+| category_id         | integer    | null: false       | <!-- カテゴリー --> 
+| status_id           | integer    | null: false       | <!-- 商品の状態 --> 
+| postage_id          | integer    | null: false       | <!-- 配送料の負担 --> 
+| prefecture_id       | integer    | null: false       | <!-- 発送元の地域 --> 
+| shipping_date_id    | integer    | null: false       | <!-- 発想までの日数 -->
+| price               | integer    | null: false       | 
+| user                | references | foreign_key: true |
 
 ### Association
 has_one :order
@@ -43,6 +45,7 @@ has_many :comments
 
 ### Association
 belongs_to :item
+belongs_to :user
 has_one :address
 
 ## addressテーブル                                          <!-- 住所テーブル -->
