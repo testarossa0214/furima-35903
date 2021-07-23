@@ -5,10 +5,17 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :nickname, presence: true
-  # validates :email, presence: true, unique: true
+  validates :email, uniqueness: true
+  validates :password, format: { with: /\A[a-zA-Z0-9]+\z/, message: '6文字以上の半角英数字で入力してください' }
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :first_name_zen_kana, presence: true
-  validates :last_name_zen_kana, presence: true
   validates :birth_day, presence: true
+
+  with_options presence: true, format: { with: /\A[ァ-ヶー-]+\z/, message: '全角カナで入力してください' } do
+    validates :first_name_zen_kana 
+    validates :last_name_zen_kana
+  end
 end
+
+
+/\A[a-zA-Z0-9]+\z/
