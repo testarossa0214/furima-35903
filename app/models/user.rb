@@ -5,15 +5,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :nickname, presence: true
-  validates :email, uniqueness: true
+  # validates :email, uniqueness: true
   # validates :password, format: { with: /\A[a-zA-Z0-9]+\z/, message: '6文字以上の半角英数字で入力してください' }
 
-  with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々]/ } do
+  with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/ } do
     validates :first_name
     validates :last_name
   end
 
-  with_options presence: true, format: { with: /\A[ァ-ヶーー]+\z/ } do
+  with_options presence: true, format: { with: /\A[ァ-ヶー－]+\z/ } do
     validates :first_name_zen_kana
     validates :last_name_zen_kana
   end
