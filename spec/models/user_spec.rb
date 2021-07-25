@@ -56,18 +56,35 @@ RSpec.describe User, type: :model do
     # end
 
     it "パスワードとパスワード（確認）は、値の一致が必須である" do
-    binding.pry
       @user.password = 'a1a1a1'
       @user.password_confirmation = 'a2a2a2'
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
-  end
 
-  
-#   - お名前(全角)は、名字と名前がそれぞれ必須であること。
-# - お名前(全角)は、全角（漢字・ひらがな・カタカナ）での入力が必須であること。
-# - お名前カナ(全角)は、名字と名前がそれぞれ必須であること。
-# - お名前カナ(全角)は、全角（カタカナ）での入力が必須であること。
-# - 生年月日が必須であること。
+    it "お名前(全角)は、名字と名前がそれぞれ必須である" do
+      @user.last_name = ''
+      @user.first_name = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name can't be blank", "First name is invalid", "Last name can't be blank", "Last name is invalid")
+    end
+
+    # it "お名前(全角)は、全角（漢字・ひらがな・カタカナ）での入力が必須である" do
+    #   binding.pry
+    #   @user.last_name = 'a'
+    #   @user.first_name = ''
+    # end
+
+    # it "お名前カナ(全角)は、名字と名前がそれぞれ必須である" do
+      
+    # end
+
+    # it "お名前カナ(全角)は、全角（カタカナ）での入力が必須である" do
+
+    # end
+
+    # it "生年月日が必須である" do
+    
+    # end
+  end
 end
