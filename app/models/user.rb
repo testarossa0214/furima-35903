@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :nickname, presence: true
   # validates :email, uniqueness: true
   # validates :password, format: { with: /\A[a-zA-Z0-9]+\z/, message: '6文字以上の半角英数字で入力してください' }
+  validates :encrypted_password,:password,:password_confirmation,format:{with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]/}
 
   with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/ } do
     validates :first_name
@@ -24,3 +25,4 @@ class User < ApplicationRecord
 end
 
 # /\A[a-zA-Z0-9]+\z/
+# メッセージオプションをつけていないのでエラー文はデフォルトのまま。変更したときはuser_specのエラー文も変更する。
