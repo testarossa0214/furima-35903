@@ -1,4 +1,4 @@
-<% if @user.errors.any? %>
+<% if model.errors.any? %>
 <div class="error-alert">
   <ul>
     <% @user.errors.full_messages.each do |message| %>
