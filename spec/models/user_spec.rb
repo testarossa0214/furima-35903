@@ -97,41 +97,35 @@ RSpec.describe User, type: :model do
 
       it 'お名前(全角)の名字は、半角英字だと登録できない' do
         @user.last_name = 'a'
-        @user.first_name = 'やまだ'
         @user.valid?
         expect(@user.errors.full_messages).to include('Last name is invalid')
       end
 
       it 'お名前(全角)の名字は、半角数字だと登録できない' do
         @user.last_name = '1'
-        @user.first_name = 'やまだ'
         @user.valid?
         expect(@user.errors.full_messages).to include('Last name is invalid')
       end
 
       it 'お名前(全角)の名字は、全角数字だと登録できない' do
         @user.last_name = '１'
-        @user.first_name = 'やまだ'
         @user.valid?
         expect(@user.errors.full_messages).to include('Last name is invalid')
       end
 
       it 'お名前(全角)の名前は、半角英字だと登録できない' do
-        @user.last_name = 'やまだ'
         @user.first_name = 'a'
         @user.valid?
         expect(@user.errors.full_messages).to include('First name is invalid')
       end
 
       it 'お名前(全角)の名前は、半角数字だと登録できない' do
-        @user.last_name = 'やまだ'
         @user.first_name = '1'
         @user.valid?
         expect(@user.errors.full_messages).to include('First name is invalid')
       end
 
       it 'お名前(全角)の名前は、全角数字だと登録できない' do
-        @user.last_name = 'やまだ'
         @user.first_name = '１'
         @user.valid?
         expect(@user.errors.full_messages).to include('First name is invalid')

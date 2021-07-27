@@ -10,9 +10,9 @@ class User < ApplicationRecord
     validates :nickname
     # validates :email, uniqueness: true
     # validates :password, format: { with: /\A[a-zA-Z0-9]+\z/, message: '6文字以上の半角英数字で入力してください' }
-    
+
     with_options format: { with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]/ } do
-      validates :encrypted_password, :password, :password_confirmation 
+      validates :password
     end
 
     with_options format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ } do
