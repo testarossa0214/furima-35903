@@ -8,7 +8,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'ユーザー新規登録' do
-    
+
     context '新規登録できる場合' do
       it 'nickname、email、password、password_confirmation、苗字、名前、苗字カナ、名前カナ、生年月日があれば登録できる' do
         expect(@user).to be_valid
@@ -70,7 +70,6 @@ RSpec.describe User, type: :model do
       end
 
       it 'パスワードが全角の場合は登録できない' do
-        binding.pry
         @user.password = 'a１２３４５'
         @user.password_confirmation = 'a１２３４５'
         @user.valid?
