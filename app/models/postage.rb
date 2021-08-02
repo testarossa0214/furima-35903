@@ -6,6 +6,6 @@ class Postage < ActiveHash::Base
   ]
   
   include ActiveHash::Associations
-  belongs_to :item
+  belongs_to :items
 
 end

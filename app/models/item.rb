@@ -5,14 +5,15 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  has_many :categories
-  has_many :statuses
-  has_many :postages
-  has_many :prefectures
-  has_many :shipping_dates
+  belongs_to :category
+  belongs_to :status
+  belongs_to :postage
+  belongs_to :prefecture
+  belongs_to :shipping_date
 
-  validates :product, :product_description, :price, presence: true
+  validates :product, :product_description, presence: true
+  validates :price, presence: true, format: { with: /\A[0-9]+\z/ }
 
-  validates :category, :status, :postage, :prefecture, :shipping_date, numericality: { other_than: 1 , message: "can't be blank" }
+  validates :category_id, :status_id, :postage_id, :prefecture_id, :shipping_date_id, numericality: { other_than: 1 , message: "can't be blank" }
 
 end
