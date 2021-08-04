@@ -8,7 +8,7 @@ class User < ApplicationRecord
   # has_many :order
   # has_many :comments
 
-  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
   validates_format_of :password, with: PASSWORD_REGEX
 
   with_options presence: true do
@@ -23,7 +23,7 @@ class User < ApplicationRecord
       validates :first_name_zen_kana
       validates :last_name_zen_kana
     end
-    
+
     validates :birth_day
   end
 end

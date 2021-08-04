@@ -17,9 +17,9 @@ class Item < ApplicationRecord
     validates :image
     validates :price, format: { with: /\A[0-9]+\z/ },
                       numericality: { only_integer: true,
-                        greater_than: 300, less_than: 10000000 }
+                                      greater_than: 300, less_than: 10_000_000 }
   end
 
-  validates :category_id, :status_id, :postage_id, :prefecture_id, :shipping_date_id, numericality: { other_than: 1 , message: "can't be blank" }
-
+  validates :category_id, :status_id, :postage_id, :prefecture_id, :shipping_date_id,
+            numericality: { other_than: 1, message: "can't be blank" }
 end
