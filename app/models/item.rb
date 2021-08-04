@@ -11,10 +11,14 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :shipping_date
 
-  validates :product, :product_description, :image, presence: true
-  validates :price, presence: true, format: { with: /\A[0-9]+\z/ },
-                    numericality: { only_integer: true,
-                      greater_than: 300, less_than: 9999999 }
+  with_options presence: true do
+    validates :product                                            # 商品名及び商品の説明欄はビューのmaxlengthで文字数を制限してるのでバリデーション記述していない
+    validates :product_description
+    validates :image
+    validates :price, format: { with: /\A[0-9]+\z/ },
+                      numericality: { only_integer: true,
+                        greater_than: 300, less_than: 10000000 }
+  end
 
   validates :category_id, :status_id, :postage_id, :prefecture_id, :shipping_date_id, numericality: { other_than: 1 , message: "can't be blank" }
 
