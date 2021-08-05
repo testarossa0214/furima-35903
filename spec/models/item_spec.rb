@@ -61,22 +61,46 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Shipping date can't be blank")
       end
 
-      it '価格が空だと登録できない' do
+      it '価格が空だと出品できない' do
         @item.price = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank", 'Price is invalid', 'Price is not a number')
       end
 
-      it '価格が300未満だと出品できない' do
-        @item.price = '299'
+      it '価格は半角英数混合だと出品できない' do
+        @item.price = '1a2b3c'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price must be greater than 300')
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+
+      it '価格は半角英語だと出品できない' do
+        @item.price = 'aabbcc'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+
+      it '価格は全角文字だと出品できない' do
+        @item.price = '１０００'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+
+      it '価格が300未満だと出品できない' do
+        @item.price = 299
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price must be greater than 299')
       end
 
       it '価格が10000000以上だと出品できない' do
-        @item.price = '10000000'
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be less than 10000000')
+      end
+
+      it 'ユーザー情報が紐づいていない場合は出品できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
       end
     end
   end
