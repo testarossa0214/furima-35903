@@ -129,11 +129,11 @@
     <ul class='item-lists'>
       <% @items.each do |item| %>
         <li class='list'>
-          <%= link_to "#" do %>
+          <%= link_to item_path(item.id), method: :get do %>
             <div class='item-img-content'>
               <%= image_tag item.image, class: "item-img" %>
 
-              <%# 商品が売れていればsold outを表示しましょう(購入機能実装時に修正) %> 
+              <%# 商品が売れていればsold outを表示しましょう(※購入機能実装時に修正) %> 
               <%# <div class='sold-out'>
                 <span>Sold Out!!</span>
               </div> %>
