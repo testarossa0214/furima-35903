@@ -70,19 +70,19 @@ RSpec.describe Item, type: :model do
       it '価格は半角英数混合だと出品できない' do
         @item.price = '1a2b3c'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
 
       it '価格は半角英語だと出品できない' do
         @item.price = 'aabbcc'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
 
       it '価格は全角文字だと出品できない' do
         @item.price = '１０００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
 
       it '価格が300未満だと出品できない' do
@@ -92,7 +92,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '価格が10000000以上だと出品できない' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be less than 10000000')
       end
@@ -100,7 +100,7 @@ RSpec.describe Item, type: :model do
       it 'ユーザー情報が紐づいていない場合は出品できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User must exist")
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end
