@@ -1,13 +1,14 @@
 class OrdersController < ApplicationController
+  before_action :set_item, only: [:index, :create]
   before_action :authenticate_user!
+  before_action :move_to_root
+  before_action :move_to_root_two
 
   def index
     @order_address = OrderAddress.new
-    @item = Item.find(params[:item_id])
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?
       pay_item
@@ -31,5 +32,17 @@ class OrdersController < ApplicationController
         card: order_params[:token],
         currency: 'jpy'
       )
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
+  def move_to_root
+    redirect_to root_path if Order.find_by(item_id: @item.id) # ordersテーブルに送られてきたitem_idが存在した場合、トップページへ遷移する
+  end
+
+  def move_to_root_two
+    redirect_to root_path if current_user.id == @item.user_id
   end
 end
