@@ -43,6 +43,6 @@ class OrdersController < ApplicationController
   end
 
   def move_to_root_two
-    redirect_to root_path if current_user.id == @item.user_id
+    redirect_to root_path if current_user.id == @item.user_id # ログインユーザーと出品ユーザーが同一の場合、トップページへ遷移する
   end
 end
