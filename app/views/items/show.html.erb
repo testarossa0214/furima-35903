@@ -23,15 +23,13 @@
       </span>
     </div>
 
-    <% if user_signed_in? %>
-      <% if @order.nil? %>
-        <% if current_user.id == @item.user_id %>
-          <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
-          <p class="or-text">or</p>
-          <%= link_to "削除", item_path(@item.id), method: :delete, class:"item-destroy" %>
-        <% else %>
-          <%= link_to "購入画面に進む", item_orders_path(@item.id), class:"item-red-btn"%>
-        <% end %>
+    <% if user_signed_in? && @order.nil? %>
+      <% if current_user.id == @item.user_id %>
+        <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
+        <p class="or-text">or</p>
+        <%= link_to "削除", item_path(@item.id), method: :delete, class:"item-destroy" %>
+      <% else %>
+        <%= link_to "購入画面に進む", item_orders_path(@item.id), class:"item-red-btn"%>
       <% end %>
     <% end %>
 
