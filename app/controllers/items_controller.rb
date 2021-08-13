@@ -25,9 +25,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if @order.present?
-      redirect_to root_path
-    end
+    redirect_to root_path if @order.present?
   end
 
   def destroy

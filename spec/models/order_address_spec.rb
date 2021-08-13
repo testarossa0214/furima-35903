@@ -22,15 +22,15 @@ RSpec.describe OrderAddress, type: :model do
 
     context '内容に問題がある場合' do
       it '郵便番号(delivery_postalcode)が空だと保存できないこと' do
-      @order_address.delivery_postalcode = ''
-      @order_address.valid?
-      expect(@order_address.errors.full_messages).to include("Delivery postalcode can't be blank")
+        @order_address.delivery_postalcode = ''
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Delivery postalcode can't be blank")
       end
 
       it '郵便番号(delivery_postalcode)が半角のハイフンを含んだ正しい形式でないと保存できないこと' do
         @order_address.delivery_postalcode = '1234567'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Delivery postalcode is invalid. Include hyphen(-)")
+        expect(@order_address.errors.full_messages).to include('Delivery postalcode is invalid. Include hyphen(-)')
       end
 
       it '都道府県(prefecture_id > 1)を選択していないと保存できないこと' do
@@ -54,31 +54,31 @@ RSpec.describe OrderAddress, type: :model do
       it '電話番号(phone)が空だと保存ができないこと' do
         @order_address.phone = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone can't be blank", "Phone is invalid")
+        expect(@order_address.errors.full_messages).to include("Phone can't be blank", 'Phone is invalid')
       end
 
       it '電話番号が9桁だと保存ができないこと' do
         @order_address.phone = '123456789'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone is invalid")
+        expect(@order_address.errors.full_messages).to include('Phone is invalid')
       end
 
       it '電話番号が12桁だと保存ができないこと' do
         @order_address.phone = '090123456789'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone is invalid")
+        expect(@order_address.errors.full_messages).to include('Phone is invalid')
       end
 
       it '電話番号は全角数字では保存できないこと' do
         @order_address.phone = '０９０１２３４５６７８'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone is invalid")
+        expect(@order_address.errors.full_messages).to include('Phone is invalid')
       end
 
       it '電話番号は英字があると保存できないこと' do
         @order_address.phone = '090a1a2a3a4'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone is invalid")
+        expect(@order_address.errors.full_messages).to include('Phone is invalid')
       end
 
       it 'tokenが空だと保存できないこと' do
