@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   has_one :order
   belongs_to :user
   # has_many :comments
-  has_one_attached :image
+  has_many_attached :images
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -14,7 +14,7 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :product                                            # 商品名及び商品の説明欄はビューのmaxlengthで文字数を制限してるのでバリデーション記述していない
     validates :product_description
-    validates :image
+    validates :images
     validates :price, format: { with: /\A[0-9]+\z/ },
                       numericality: { only_integer: true,
                                       greater_than: 299, less_than: 10_000_000 }

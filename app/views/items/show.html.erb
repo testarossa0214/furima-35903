@@ -7,7 +7,9 @@
       <%= @item.product %>
     </h2>
     <div class="item-img-content">
-      <%= image_tag @item.image, class:"item-box-img" %>
+    <% @item.images.each do |image| %>
+      <%= image_tag image, class:"item-box-img" %>
+    <% end %>
         <% unless @order.nil? %>
           <div class="sold-out">
             <span>Sold Out!!</span>
