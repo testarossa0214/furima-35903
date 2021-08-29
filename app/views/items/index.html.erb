@@ -21,9 +21,9 @@
     </div>
   </div>
   <%# /画面上部の「人生を変えるフリマアプリ」帯部分  %>
+  </section>
 
 <section id="box2" class="box" data-section-name="Area2">
-<!--/box--></section>
   <%# FURIMAが選ばれる3つの理由部分 %>
   <div class='select-reason-contents'>
     <h2 class='title'>
@@ -66,9 +66,10 @@
     </ul>
   </div>
   <%# /FURIMAが選ばれる3つの理由部分 %>
+  </section>
 
 <section id="box3" class="box" data-section-name="Area3">
-<!--/box--></section>
+
   <%# 画面中央の「会員数日本一位」帯部分 %>
   <div class='ad-contents'>
     <h2 class='ad-title'>
@@ -90,8 +91,10 @@
   </div>
   <%# /画面中央の「会員数日本一位」帯部分 %>
 
+  </section>
+
 <section id="box4" class="box" data-section-name="Area4">
-<!--/box--></section>
+
   <%# FURIMAの特徴 %>
   <div class='feature-contents'>
     <h2 class='title'>
@@ -129,8 +132,10 @@
   </div>
   <%# /FURIMAの特徴 %>
 
+  </section>
+
 <section id="box5" class="box" data-section-name="Area5">
-<!--/box--></section>
+
   <%# 商品一覧 %>
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
@@ -186,6 +191,8 @@
     </ul>
   </div>
   <%# /商品一覧 %>
+  </section>
+  
 </div>
 <%= link_to(new_item_path, class: 'purchase-btn') do %>
   <span class='purchase-btn-text'>出品する</span>
@@ -193,4 +200,5 @@
 <% end %>
 <%= render "shared/footer" %>
 <!--自作のJS-->
-<script src="scrollify.js"></script>
+<%# <script src"jquery.scrollify.js"></script> %>
+<script src="https://cdn.jsdelivr.net/gh/lukehaas/Scrollify/jquery.scrollify.js"></script>
