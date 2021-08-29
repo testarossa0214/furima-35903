@@ -1,6 +1,9 @@
 <%= render "shared/header" %>
 <div class='main'>
 
+<section id="box1" class="box" data-section-name="Area1"><!--data-section-nameはページネーションを表示させた際、現在地に現れるテキスト-->
+<!--/box--></section>
+
   <%# 画面上部の「人生を変えるフリマアプリ」帯部分 %>
   <div class='title-contents'>
     <h2 class='service-title'>
@@ -19,6 +22,8 @@
   </div>
   <%# /画面上部の「人生を変えるフリマアプリ」帯部分  %>
 
+<section id="box2" class="box" data-section-name="Area2">
+<!--/box--></section>
   <%# FURIMAが選ばれる3つの理由部分 %>
   <div class='select-reason-contents'>
     <h2 class='title'>
@@ -62,6 +67,8 @@
   </div>
   <%# /FURIMAが選ばれる3つの理由部分 %>
 
+<section id="box3" class="box" data-section-name="Area3">
+<!--/box--></section>
   <%# 画面中央の「会員数日本一位」帯部分 %>
   <div class='ad-contents'>
     <h2 class='ad-title'>
@@ -83,6 +90,8 @@
   </div>
   <%# /画面中央の「会員数日本一位」帯部分 %>
 
+<section id="box4" class="box" data-section-name="Area4">
+<!--/box--></section>
   <%# FURIMAの特徴 %>
   <div class='feature-contents'>
     <h2 class='title'>
@@ -120,6 +129,8 @@
   </div>
   <%# /FURIMAの特徴 %>
 
+<section id="box5" class="box" data-section-name="Area5">
+<!--/box--></section>
   <%# 商品一覧 %>
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
@@ -181,3 +192,5 @@
   <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
 <% end %>
 <%= render "shared/footer" %>
+<!--自作のJS-->
+<script src="scrollify.js"></script>
