@@ -90,6 +90,10 @@
 }
 
 /* /商品画像 */
+.new-item-img {       /* (8/30追記 プレビュー表示リサイズ用class)  */
+  width: 50vh;
+  height: auto;
+}
 
 /* 商品名と商品説明 */
 .new-items {
