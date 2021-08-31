@@ -1,0 +1,19 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        nickname: ニックネーム
+        first_name: 名前
+        last_name: 苗字
+        first_name_zen_kana: 名前（全角かな）
+        last_name_zen_kana: 苗字（全角かな）
+        birth_day: 誕生日
+      item:
+        product: 商品名
+        product_description: 商品説明文
+        category: カテゴリー
+        status: 商品の状態
+        postage: 配送料の負担
+        prefecture: 発送元の地域
+        shipping_date: 発送までの日数
+        price: 価格
