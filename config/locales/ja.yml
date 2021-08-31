@@ -3,17 +3,28 @@ ja:
     attributes:
       user:
         nickname: ニックネーム
-        first_name: 名前
-        last_name: 苗字
-        first_name_zen_kana: 名前（全角かな）
-        last_name_zen_kana: 苗字（全角かな）
+        first_name: 名前(全角)
+        last_name: 苗字(全角)
+        first_name_zen_kana: 名前（全角カナ）
+        last_name_zen_kana: 苗字（全角カナ）
         birth_day: 誕生日
       item:
         product: 商品名
         product_description: 商品説明文
-        category: カテゴリー
-        status: 商品の状態
-        postage: 配送料の負担
-        prefecture: 発送元の地域
-        shipping_date: 発送までの日数
+        images: 商品画像
+        category_id: カテゴリー
+        status_id: 商品の状態
+        postage_id: 配送料の負担
+        prefecture_id: 発送元の地域
+        shipping_date_id: 発送までの日数
         price: 価格
+  activemodel:
+    attributes:
+      order_address:
+        delivery_postalcode: 郵便番号
+        prefecture_id: 都道府県
+        delivery_city: 市区町村
+        delivery_address: 番地
+        delivery_mansion: 建物名
+        phone: 電話番号
+        token: クレジットカード情報

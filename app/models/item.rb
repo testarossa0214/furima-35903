@@ -21,5 +21,5 @@ class Item < ApplicationRecord
   end
 
   validates :category_id, :status_id, :postage_id, :prefecture_id, :shipping_date_id,
-            numericality: { other_than: 1, message: "can't be blank" }
+            numericality: { other_than: 1, message: "を入力してください" }
 end
